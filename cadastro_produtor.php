@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dados_api = ['contents' => [['parts' => [['text' => $prompt]]]]];
                 $json_para_api = json_encode($dados_api);
 
-                $api_key = 'AIzaSyD80Of7GWl1QwTiz1gP4So-UeU-7s47Xus'; // <<<---- CONTINUE USANDO A SUA CHAVE AQUI!
+                $api_key = ''; // <<<---- CONTINUE USANDO A SUA CHAVE AQUI!
 
                 $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' . $api_key;
 
