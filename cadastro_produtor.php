@@ -1,23 +1,5 @@
 <?php
-// Inclui o arquivo de conexão com o banco de dados
-// Certifique-se de que o caminho para o arquivo "banco.php" está correto.
-include 'banco.php';
 
-// Inicializa a variável de hortas como um array vazio
-$lista_de_hortas = [];
-
-try {
-    // Prepara e executa a query para buscar todas as hortas
-    $sql_hortas = "SELECT id_hortas, nome FROM hortas ORDER BY nome ASC";
-    $stmt_hortas = $conn->prepare($sql_hortas);
-    $stmt_hortas->execute();
-    
-    // Busca todas as hortas e armazena no array
-    $lista_de_hortas = $stmt_hortas->fetchAll(PDO::FETCH_ASSOC);
-
-} catch (PDOException $e) {
-    // Você pode registrar o erro real em um log: error_log($e->getMessage());
-    // Para um formulário simples, podemos apenas deixar a lista vazia.
 }
 ?>
 <!DOCTYPE html>
