@@ -31,20 +31,20 @@
                 senha: senha
             };
 
-            fetch('api_login.php', {
+            fetch('login_produtor.php', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(dadosLogin)
             })
-            .then(Response=> response.json())
+            .then(response=> response.json())
             .then(data=>{
                 console.log('Resposta da API:', data);
                 
                 if (data.status === 'sucesso'){
                     resultadoDiv.style.color = 'green';
-                    resultadoDiv.innerHTML = `<strong>${data.mensagem}</trong><br>Bem-vindo, ${data.dados_usuario.nome}! (ID: ${data.dados_usuario.id})`;     
+                    resultadoDiv.innerHTML = `<strong>${data.mensagem}</strong><br>Bem-vindo, ${data.dados_usuario.nome}! (ID: ${data.dados_usuario.id})`;     
                 } else {
                     resultadoDiv.style.color = 'red';
                     resultadoDiv.innerHTML = `<strong>Erro:</strong> ${data.mensagem}`; 
