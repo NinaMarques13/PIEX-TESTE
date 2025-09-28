@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exemplo de login</title>
+</head>
+<body>
+    <H2>Login do Produtor</H2>
+    <form id="formLogin">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required><br><br>
+        <button type="submit">Entrar</button>
+    </form>
+    <div id="divResultado" style="margin-top: 20px; font-family: monospace;"></div>
+
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const resultadoDiv = document.getElementById('divResultado');
+            resultadoDiv.innerHTML = "Processando...";
+
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            const dadosLogin = {
+                email: email,
+                senha: senha
+            };
+
+            fetch('api_login.php', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadosLogin)
+            })
+            .then(Response=> response.json())
+            .then(data=>{
+                console.log('Resposta da API:', data);
+                
+                if (data.status === 'sucesso'){
+                    resultadoDiv.style.color = 'green';
+                    resultadoDiv.innerHTML = `<strong>${data.mensagem}</trong><br>Bem-vindo, ${data.dados_usuario.nome}! (ID: ${data.dados_usuario.id})`;     
+                } else {
+                    resultadoDiv.style.color = 'red';
+                    resultadoDiv.innerHTML = `<strong>Erro:</strong> ${data.mensagem}`; 
+                }
+            })
+            .catch(error=>{
+                console.error('Erro na requisição:', error);
+                resultadoDiv.style.color='red';
+                resultadoDiv.innerHTML="Ocorreu um erro ao tentar conectar com o servidor.";
+            })
+        });
+    </script>
+</body>
+</html>
