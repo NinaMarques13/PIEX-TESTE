@@ -2,7 +2,7 @@
 // --- CONEXÃO COM O BANCO DE DADOS ---
 
 $host = 'localhost';
-$dbname = 'piex'; // Nome do banco de dados
+$dbname = 'hortas_db'; // Nome do banco de dados
 $user = 'root';
 $pass = '';
 
